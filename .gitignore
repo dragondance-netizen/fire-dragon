@@ -1,0 +1,7 @@
+node_modules/
+dist/
+test-results/
+tests/browser-smoke.mjs
+.env
+.env.*
+*.log

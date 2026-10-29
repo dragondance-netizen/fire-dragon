@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#151512">
+  <meta name="description" content="火龍隨拍・大坑四軌節奏遊戲。以節拍點亮街巷，接住每一點火光。">
+  <title>火龍隨拍 FIRE BEAT — 大坑節奏夜</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="./" aria-label="火龍隨拍首頁"><img src="./assets/mark.svg" alt=""><span>火龍隨拍<small>FIRE BEAT / TAI HANG</small></span></a>
+    <nav aria-label="主導覽"><button class="nav-button active" id="game-nav">節奏現場 <i></i></button><button class="nav-button" id="how-to">遊玩指南 <span>↗</span></button><button class="nav-button" id="about-button">大坑故事 <span>↗</span></button></nav>
+    <button class="sound-button" id="sound-toggle" aria-label="切換音樂靜音" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3c2 2 2 6 0 8m3-11c4 4 4 10 0 14"/></svg><span>聲音開啟</span></button>
+  </header>
+  <main class="shell">
+    <section class="intro">
+      <div><div class="eyebrow"><span class="live-dot"></span> HONG KONG NIGHT RHYTHM <span class="eyebrow-rule"></span> 香港・大坑</div><h1>一拍一火光<span>，</span>舞動大坑。</h1><p>跟上鼓點，接過龍香。今晚，整條街都係你嘅舞台。</p></div>
+      <div class="festival-stamp"><span>中秋之夜</span><b>火龍<br>起舞</b><small>KEEP THE FIRE ALIVE</small></div>
+    </section>
+    <div class="game-layout">
+      <section class="stage-card" aria-label="四軌音樂遊戲">
+        <div class="stage-topline"><span><i class="live-dot"></i><b id="scene-status">街坊就位</b><span class="scene-divider">/</span> 大坑・浣紗街</span><button id="pause-button" class="pause-button" aria-label="暫停遊戲" disabled><span>Ⅱ</span> <small>ESC</small></button></div>
+        <div class="stage" id="game-stage">
+          <canvas id="scene-canvas" aria-hidden="true"></canvas>
+          <div class="scene-vignette"></div>
+          <div class="scene-caption"><span>銅鑼響起，火龍甦醒</span><small>TAI HANG · AFTER DARK</small></div>
+          <div class="combo-display" id="combo-display"><b id="combo-number">0</b><small>COMBO</small></div>
+          <canvas id="note-canvas" aria-label="音符從四條軌道降下，在底部光線按下對應按鍵"></canvas>
+          <div class="judge-display" id="judgement" aria-live="off"></div>
+          <div class="lane-keys" id="lane-keys"><button class="lane-key" data-lane="0" aria-label="D 鍵 龍頭"><span class="lane-role">龍頭</span><kbd>D</kbd><small>HEAD</small></button><button class="lane-key" data-lane="1" aria-label="F 鍵 龍身壹"><span class="lane-role">龍身 壹</span><kbd>F</kbd><small>BODY 01</small></button><button class="lane-key" data-lane="2" aria-label="J 鍵 龍身貳"><span class="lane-role">龍身 貳</span><kbd>J</kbd><small>BODY 02</small></button><button class="lane-key" data-lane="3" aria-label="K 鍵 龍尾"><span class="lane-role">龍尾</span><kbd>K</kbd><small>TAIL</small></button></div>
+          <div class="ready-overlay" id="ready-overlay"><div class="ready-icon">火</div><b>等你，起舞。</b><span>按下「開始演出」，接住第一道火光</span></div>
+          <div class="countdown" id="countdown" hidden></div>
+          <div class="stage-message" id="stage-message" aria-live="polite"></div>
+        </div>
+        <div class="timeline"><span id="elapsed">00:00</span><div class="timeline-track"><div id="timeline-progress"></div></div><span id="duration">00:49</span><span class="timeline-label">跟著火光，找到節拍</span></div>
+        <div class="score-strip"><div><small>SCORE / 得分</small><b id="score">000000</b></div><div><small>ACCURACY / 準確率</small><b id="accuracy">100.0<span>%</span></b></div><div class="life-stat"><small>FIRE / 龍火</small><div id="hearts" role="img" aria-label="5 顆心"></div></div></div>
+      </section>
+      <aside class="control-panel">
+        <div class="panel-heading"><span>今夜曲目</span><small>01 / SONG SELECT</small></div>
+        <div class="album-art"><div class="album-grid"></div><img src="./assets/album-dragon.svg" alt="盤旋於火光中的金色火龍插畫"><span class="album-kicker">TAI HANG AFTER HOURS</span><div class="album-title">LOSE<br>MY MINE<span>VOL. 001 / FIRE EDIT</span></div><span class="album-seal">火<br>龍</span><span class="album-bottom">FOLLOW THE RHYTHM. FEEL THE FIRE.</span></div>
+        <div class="song-info"><div><h2 id="song-title">Lose My Mine</h2><p id="song-credit">原創電子示範曲 · Fire Beat Studio</p></div><span class="song-tag" id="song-tag">DEMO</span></div>
+        <div class="track-meta"><span><b id="bpm-label">124</b> BPM</span><i></i><span id="track-length">0:49</span><i></i><span>4 軌</span><svg viewBox="0 0 50 18" aria-hidden="true"><path d="M1 8v2m4-5v8m4-10v12m4-8v4m4-10v16m4-11v6m4-8v10m4-14v18m4-11v4m4-8v12m4-10v8m4-5v2"/></svg></div>
+        <div class="difficulty-label"><span>選擇難度</span><small id="note-count">— NOTES</small></div><div class="difficulty-switch" id="difficulty-switch" role="group" aria-label="遊戲難度"><button data-difficulty="easy">初舞<small>Lv. 03</small></button><button class="selected" data-difficulty="normal">入陣<small>Lv. 06</small></button><button data-difficulty="hard">狂舞<small>Lv. 09</small></button></div>
+        <button class="start-button" id="start-button"><span class="play-triangle"></span><span id="start-label">開始演出</span><kbd>ENTER ↵</kbd></button>
+        <div class="secondary-actions"><button id="upload-button"><span>＋</span> 匯入音樂</button><button id="settings-button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 15h14M7 2v6m6 4v6"/></svg>演出設定</button></div><input type="file" id="audio-file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" hidden>
+        <p class="music-note" id="music-note">未附原曲音檔。現以原創示範配樂體驗，亦可匯入你擁有的音樂。</p>
+        <div class="personal-best"><span>↗ <span>個人最佳</span></span><b id="best-score">—</b></div>
+      </aside>
+    </div>
+    <section class="guide-strip" aria-label="音符種類"><div class="guide-heading"><span class="guide-index">入門</span><b>三種節拍，一條火龍。</b><small>THE BASICS</small></div><div class="guide-item"><span class="note-icon tap-icon"></span><div><b>單點 <small>TAP</small></b><p>到達光線，按一下。</p></div></div><div class="guide-item"><span class="note-icon hold-icon"></span><div><b>長按 <small>HOLD</small></b><p>按住，直到龍香燃盡。</p></div></div><div class="guide-item"><span class="note-icon double-icon">◇</span><div><b>龍珠雙擊 <small>DOUBLE</small></b><p>同一按鍵，快速按兩下。</p></div></div><button id="details-button" aria-label="查看完整遊戲規則">↗</button></section>
+  </main>
+  <footer class="shell site-footer"><span>讓傳統，繼續有節奏地發光。</span><span>MADE FOR THE STREETS. PLAYED WITH HEART. <i>✦</i> 香港大坑</span></footer>
+  <dialog id="help-dialog" class="modal"><button class="close-modal" aria-label="關閉遊玩指南">×</button><span class="eyebrow">HOW TO KEEP THE FIRE ALIVE</span><h2>你嘅節拍，火龍嘅步伐。</h2><p>音符落到金色判定線時，按 <kbd>D</kbd> <kbd>F</kbd> <kbd>J</kbd> <kbd>K</kbd>，或點按畫面底部對應按鈕。亦支援 <kbd>1</kbd> 至 <kbd>4</kbd>。</p><div class="help-notes"><p><b class="text-gold">▬ 單點</b>按一下，接住鼓點。</p><p><b class="text-green">▥ 長按</b>按住至長條結束；提早鬆手算 MISS。</p><p><b class="text-pink">◇ 龍珠雙擊</b>先按一下，再於 240 毫秒內按第二下。</p></div><div class="timing-table"><div><b>PERFECT</b><span>誤差 ≤ 75 ms</span><strong>+100</strong></div><div><b>TOO EARLY</b><span>早 76–180 ms</span><strong>+50</strong></div><div><b>TOO LATE</b><span>遲 76–180 ms</span><strong>+50</strong></div><div><b>MISS</b><span>漏接／提早放開長按</span><strong>−1 ♥</strong></div></div><p class="muted">雙擊的理想間隔為 120 ms，兩下以較大誤差評分。每顆音符只計分一次。準確率 = 得分 ÷ 已判定音符滿分；結算以全曲滿分計算。</p><p>開場有 5 顆心。失誤會令舞龍隊踉蹌，心心歸零即結束；撐到歌曲完結就通關！按 <kbd>Esc</kbd> 暫停。</p><button class="primary-modal-button close-action">明白，準備起舞 ↗</button></dialog>
+  <dialog id="settings-dialog" class="modal settings-modal"><button class="close-modal" aria-label="關閉演出設定">×</button><span class="eyebrow">MAKE IT YOUR RHYTHM</span><h2>調好節拍，再起舞。</h2><label class="setting-row"><span>音樂音量 <output id="volume-output">65%</output></span><input id="volume-slider" type="range" min="0" max="100" value="65"></label><label class="setting-row"><span>音符流速 <output id="speed-output">1.0×</output></span><input id="speed-slider" type="range" min="0.7" max="1.5" value="1" step="0.1"><small>只改變音符下落速度，不改變音樂速度。</small></label><label class="setting-row"><span>判定補償 <output id="offset-output">0 ms</output></span><input id="offset-slider" type="range" min="-150" max="150" value="0" step="5"><small>按下時總顯示 TOO LATE？試把數值調高。</small></label><label class="setting-row bpm-setting"><span>匯入歌曲 BPM</span><input id="bpm-input" type="number" min="50" max="240" value="124"><small>匯入歌曲按 BPM 產生節奏譜；可調整至歌曲速度。首拍從 2 秒開始。</small></label><label class="setting-row bpm-setting"><span>匯入歌曲首拍（秒）</span><input id="first-beat-input" type="number" min="0" max="30" step="0.05" value="2"><small>對準原曲第一個鼓點；新設定於下一場生效。</small></label><button class="primary-modal-button close-action">儲存設定 ↗</button></dialog>
+  <dialog id="about-dialog" class="modal"><button class="close-modal" aria-label="關閉大坑故事">×</button><span class="eyebrow">A NEIGHBOURHOOD, ALIGHT</span><h2>街巷有火，街坊有心。</h2><div class="story-art">大坑<span>TAI HANG</span></div><p>靈感來自香港大坑舞火龍：龍珠帶路，街坊合力擎起插滿龍香的火龍，在街巷之間穿梭。</p><p>遊戲把舞龍隊的默契化成四條軌道：龍頭、兩段龍身與龍尾。每一拍接得準，火龍就舞得齊；漏接時，隊伍會踉蹌、龍身會下墜。</p><p class="muted">這是一個文化主題創作遊戲。場景為大坑街巷的風格化原創插畫，並非實景重建。配樂為原創合成示範曲，沒有包含《Lose My Mine》商業錄音。</p><button class="primary-modal-button close-action">帶住節拍，返去街頭 ↗</button></dialog>
+  <dialog id="pause-dialog" class="modal pause-modal"><span class="eyebrow">TAKE A BREATH</span><h2>火光未熄，等你返嚟。</h2><p>演出已暫停。休息一下，再接下一拍。</p><button id="resume-button" class="primary-modal-button">繼續演出 ↗</button><button id="restart-button" class="plain-modal-button">重新開始</button><button id="quit-button" class="plain-modal-button">返回選曲</button></dialog>
+  <dialog id="result-dialog" class="modal result-modal"><span class="eyebrow" id="result-kicker">PERFORMANCE COMPLETE</span><div class="result-title-row"><h2 id="result-title">火龍舞畢，滿街火光。</h2><span id="result-grade">S</span></div><p id="result-song">Lose My Mine · 入陣</p><div class="result-score"><small>TOTAL SCORE</small><b id="result-score">0</b><span id="new-best" hidden>NEW BEST ↗</span></div><div class="result-stats"><div><small>準確率</small><b id="result-accuracy">0%</b></div><div><small>最高連擊</small><b id="result-combo">0</b></div><div><small>剩餘龍火</small><b id="result-hearts">5 ♥</b></div></div><div class="result-breakdown" id="result-breakdown"></div><button id="play-again" class="primary-modal-button">再舞一場 ↗</button><button id="back-to-song" class="plain-modal-button">返回選曲</button></dialog>
+  <div class="toast" id="toast" role="status"></div>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>
